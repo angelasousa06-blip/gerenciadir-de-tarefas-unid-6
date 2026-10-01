@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Tarefas</title>
+    <!-- CDN Correta do Vue 3 -->
+    <script src="https://unpkg.com"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .tarefa { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 6px; background-color: #fff; }
+        form { margin-bottom: 30px; padding: 15px; border: 1px dashed #ccc; border-radius: 6px; }
+        input, textarea, button { display: block; width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; width: auto; display: inline-block; margin-right: 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>Gerenciador de Tarefas Coordenado</h2>
+
+        <!-- ==================================================== -->
+        <!-- 4. USO DOS COMPONENTES NO TEMPLATE                  -->
+        <!-- ==================================================== -->
+        <FormularioTarefa
+            @nova-tarefa="cadastrarTarefa"
+        />
+
+        <ItemTarefa
+            v-for="tarefa in tarefas"
+            :key="tarefa.id"
+            :tarefa="tarefa"
+            @concluir="alterarStatus"
+            @excluir="excluirTarefa"
+        />
+    </div>
+
+    <!-- O script com os códigos 1, 2 e 3 do seu arquivo de apoio -->
+    <script src="/app.js"></script>
+</body>
+</html>
